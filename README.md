@@ -2,7 +2,7 @@
 *xzho4299_9103_tut4*
 ## Quiz 8
 ### Part 1: Imaging Technique Inspiration
-My inspiration comes from the animated movie ***Spider-Man: Across the Spider-Verse***. The movie uses a large number of hand-drawn lines to express a sense of flow, which brings strong visual impact and artistic beauty. The work I want to choose is Georges majeur au crépuscule by Monet. The picture looks like it is made up of many lines, which has a very similar feeling to ***Spider-Man***. I hope to give this painting the sense of flow in the movie and make the artwork full of vitality.
+My inspiration comes from the animated movie ***Spider-Man: Across the Spider-Verse***. The movie uses a large number of hand-drawn lines to express a sense of flow, which brings strong visual impact and artistic beauty. The work I want to choose is ***Georges Majeur au Crépuscule*** by Monet. The picture looks like it is made up of many lines, which has a very similar feeling to ***Spider-Man***. I hope to give this painting the sense of flow in the movie and make the artwork full of vitality.
 ###
 
 ![An image of inspiration](assets/Spiderman-1.JPG)

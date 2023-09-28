@@ -14,6 +14,7 @@ The coding technique I found that can express the flow of lines is Particle Syst
 ![An image of Particle Systems](assets/Particle_Systems.JPG)
 [Particle Systems-example-1](https://openprocessing.org/sketch/2006924)
 
+
 There are three different expression forms of particle systems below. The basic method is to convert the image into particles: mainly to obtain the color of the image, then draw particles of different colors, and finally let the particles move to draw flowing graphics. 
 
 ![An image of Particle Systems](assets/trying_painting_circle_noise.JPG)

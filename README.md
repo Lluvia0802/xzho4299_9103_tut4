@@ -11,17 +11,17 @@ My inspiration comes from the animated movie spider-man across the spider-verse.
 ### Part 2: Coding Technique Exploration
 The coding technique I found that can express the flow of lines is Particle Systems. 
 
-![An image of Particle Systems](assets/Particle_Systems.PNG)
+![An image of Particle Systems](assets/Particle_Systems.JPG)
 [Particle Systems-example-1](https://openprocessing.org/sketch/2006924)
 
 There are three different expression forms of particle systems below. The basic method is to convert the image into particles: mainly to obtain the color of the image, then draw particles of different colors, and finally let the particles move to draw flowing graphics. 
 
-![An image of Particle Systems](assets/trying_painting_circle_noise.PNG)
+![An image of Particle Systems](assets/trying_painting_circle_noise.JPG)
 [Particle Systems-example-2](https://openprocessing.org/sketch/2013546)
 
 In addition to showing the fluidity of the lines, I also want to add interactive effects with the mouse and keyboard, so that the particles can follow the movement of the mouse, increase or decrease the number of particles, change the particle type, and even achieve a three-dimensional effect.
 
-![An image of Particle Systems](assets/Interactive_Particle.PNG)
+![An image of Particle Systems](assets/Interactive_Particle.JPG)
 [Particle Systems-example-3](https://openprocessing.org/sketch/1984312)
 
 ![An image of Particle Systems](assets/GravParticleRandom.JPG)

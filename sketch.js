@@ -1,5 +1,7 @@
 let firework1;
-
+let rectWidth, rectHeight;
+// A4 Size
+let rectRatio = 210 / 297;
 // Control the number of frames in the bloom cycle
 let cycleDuration = 2000;
 let whiteDots = [];
@@ -8,18 +10,19 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   background(255);
   angleMode(DEGREES);
-  rectMode(CENTER);
+
+  calculateRectSize();
 
   // Create 1 firework
   firework1 = new Firework(0.5 * width, 0.5 * height, 0.5, 1);
 
-  // Create randomly distributed white dots
-  for (let i = 0; i < 50; i++) {
-    let x = random(width);
-    let y = random(height);
-    let size = random(5, 15);
-    whiteDots.push(new WhiteDot(x, y, size));
-  }
+  // // Create randomly distributed white dots
+  // for (let i = 0; i < 50; i++) {
+  //   let x = random(width);
+  //   let y = random(height);
+  //   let size = random(5, 15);
+  //   whiteDots.push(new WhiteDot(x, y, size));
+  // }
 }
 
 function draw() {
@@ -28,8 +31,10 @@ function draw() {
   bgcol.setAlpha(5);
   fill(bgcol);
   noStroke();
-  rect(windowWidth / 2, windowHeight / 2, 420, 584)
-
+  let x = width / 2 - rectWidth / 2;
+  let y = height / 2 - rectHeight / 2;
+  rect(x, y, rectWidth, rectHeight);
+  // rect(windowWidth / 2, windowHeight / 2, posterWidth, posterHeight)
   // Draw white dots
   // for (let dot of whiteDots) {
   //   dot.show();
@@ -40,12 +45,25 @@ function draw() {
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
   firework1.updatePosition(0.5 * width, 0.5 * height);
-
+  calculateRectSize();
   // Update the position of the white dot
-  for (let dot of whiteDots) {
-    dot.updatePosition(random(width), random(height));
+  // for (let dot of whiteDots) {
+  //   dot.updatePosition(random(width), random(height));
+  // }
+}
+
+function calculateRectSize() {
+  if (windowWidth / windowHeight < rectRatio) {
+    // If the window's aspect ratio is less than the rectangle's ratio, use the window's width as the base
+    rectWidth = windowWidth;
+    rectHeight = windowWidth / rectRatio;
+  } else {
+    // If the window's aspect ratio is greater than or equal to the rectangle's ratio, use the window's height as the base
+    rectHeight = windowHeight;
+    rectWidth = windowHeight * rectRatio;
   }
 }
+
 
 class Firework {
   constructor(x, y, expansionSpeed, rotationSpeed) {
@@ -124,21 +142,21 @@ class Firework {
 
 }
 
-class WhiteDot {
-  constructor(x, y, size) {
-    this.x = x;
-    this.y = y;
-    this.size = size;
-  }
+// class WhiteDot {
+//   constructor(x, y, size) {
+//     this.x = x;
+//     this.y = y;
+//     this.size = size;
+//   }
 
-  show() {
-    fill(255);
-    noStroke();
-    ellipse(this.x, this.y, this.size, this.size);
-  }
+//   show() {
+//     fill(255);
+//     noStroke();
+//     ellipse(this.x, this.y, this.size, this.size);
+//   }
 
-  updatePosition(newX, newY) {
-    this.x = newX;
-    this.y = newY;
-  }
-}
+//   updatePosition(newX, newY) {
+//     this.x = newX;
+//     this.y = newY;
+//   }
+// }

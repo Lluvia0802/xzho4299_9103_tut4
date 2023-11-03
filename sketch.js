@@ -18,7 +18,6 @@ function setup() {
   angleMode(DEGREES);
 
   calculateRectSize();
-  // calculateTextPosition();
 
   // Create 1 firework
   firework1 = new Firework(0.5 * width, 0.5 * height, 0.5, 1);
@@ -95,7 +94,6 @@ function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
   firework1.updatePosition(0.5 * width, 0.5 * height);
   calculateRectSize();
-  // calculateTextPosition();
   // Update the position of the white dot
   // for (let dot of whiteDots) {
   //   dot.updatePosition(random(width), random(height));
@@ -113,12 +111,6 @@ function calculateRectSize() {
     rectWidth = windowHeight * rectRatio;
   }
 }
-
-// function calculateTextPosition() {
-//   textX = windowWidth / 2 - rectWidth / 2 + 20;
-//   textY = windowHeight / 2 - rectHeight / 2 + 80;
-// }
-
 
 class Firework {
   constructor(x, y, expansionSpeed, rotationSpeed) {

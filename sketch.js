@@ -6,10 +6,11 @@ let whiteDots = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  background(18, 88, 116);
+  background(255);
   angleMode(DEGREES);
+  rectMode(CENTER);
 
-  // Create 17 fireworks
+  // Create 1 firework
   firework1 = new Firework(0.5 * width, 0.5 * height, 0.5, 1);
 
   // Create randomly distributed white dots
@@ -22,16 +23,17 @@ function setup() {
 }
 
 function draw() {
+  firework1.show();
   let bgcol = color("#02496C");
   bgcol.setAlpha(5);
-  background(bgcol);
+  fill(bgcol);
+  noStroke();
+  rect(windowWidth / 2, windowHeight / 2, 420, 584)
 
   // Draw white dots
-  for (let dot of whiteDots) {
-    dot.show();
-  }
-
-  firework1.show();
+  // for (let dot of whiteDots) {
+  //   dot.show();
+  // }
 
 }
 

@@ -4,7 +4,13 @@ let rectWidth, rectHeight;
 let rectRatio = 210 / 297;
 // Control the number of frames in the bloom cycle
 let cycleDuration = 2000;
-let whiteDots = [];
+// let whiteDots = [];
+
+function preload() {
+  font1 = loadFont('assets/Balgin Black.ttf');
+  font2 = loadFont('assets/Gliker Black.ttf');
+}
+
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -12,6 +18,7 @@ function setup() {
   angleMode(DEGREES);
 
   calculateRectSize();
+  // calculateTextPosition();
 
   // Create 1 firework
   firework1 = new Firework(0.5 * width, 0.5 * height, 0.5, 1);
@@ -34,11 +41,53 @@ function draw() {
   let x = width / 2 - rectWidth / 2;
   let y = height / 2 - rectHeight / 2;
   rect(x, y, rectWidth, rectHeight);
-  // rect(windowWidth / 2, windowHeight / 2, posterWidth, posterHeight)
+
   // Draw white dots
   // for (let dot of whiteDots) {
   //   dot.show();
   // }
+
+  let textSizeMultiplier1 = 0.1;
+  textFont(font2);
+  textSize(textSizeMultiplier1 * windowHeight);
+  fill('white');
+  textLeading(rectHeight * 0.1);
+  let textXOffset1 = (rectWidth * 0.05); // 调整此值来水平垂直偏移
+  let textX1 = x + textXOffset1;
+  let textYOffset1 = (rectHeight * 0.1); // 调整此值来控制垂直偏移
+  let textY1 = y + textYOffset1;
+  text('Wheels of Fortune', textX1, textY1, rectWidth - 30, rectHeight - 30);
+
+  let textXOffset2 = (rectWidth * 0.05); // 调整此值来水平垂直偏移
+  let textX2 = x + textXOffset2;
+  let textYOffset2 = (rectHeight * 0.95); // 调整此值来控制垂直偏移
+  let textY2 = y + textYOffset2;
+  text('Exhibition', textX2, textY2);
+
+  let textSizeMultiplier2 = 0.06;
+  textFont(font1);
+  textSize(textSizeMultiplier2 * windowHeight);
+  fill('white');
+  let textXOffset3 = (rectWidth * 0.05); // 调整此值来水平垂直偏移
+  let textX3 = x + textXOffset3;
+  let textYOffset3 = (rectHeight * 0.83); // 调整此值来控制垂直偏移
+  let textY3 = y + textYOffset3;
+  text('Pacita Abad', textX3, textY3);
+
+  let textSizeMultiplier3 = 0.04;
+  textFont(font1);
+  textSize(textSizeMultiplier3 * windowHeight);
+  fill('white');
+  let textXOffset4 = (rectWidth * 0.1); // 调整此值来水平垂直偏移
+  let textX4 = x + textXOffset4;
+  let textYOffset4 = (rectHeight * 0.5); // 调整此值来控制垂直偏移
+  let textY4 = y + textYOffset4;
+  push();
+  translate(textX4, textY4);
+  rotate(-90);
+  textAlign(CENTER, CENTER);
+  text('City of Sydney', 0, 0);
+  pop();
 
 }
 
@@ -46,6 +95,7 @@ function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
   firework1.updatePosition(0.5 * width, 0.5 * height);
   calculateRectSize();
+  // calculateTextPosition();
   // Update the position of the white dot
   // for (let dot of whiteDots) {
   //   dot.updatePosition(random(width), random(height));
@@ -63,6 +113,11 @@ function calculateRectSize() {
     rectWidth = windowHeight * rectRatio;
   }
 }
+
+// function calculateTextPosition() {
+//   textX = windowWidth / 2 - rectWidth / 2 + 20;
+//   textY = windowHeight / 2 - rectHeight / 2 + 80;
+// }
 
 
 class Firework {

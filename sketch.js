@@ -5,6 +5,8 @@ let rectRatio = 210 / 297;
 // Control the number of frames in the bloom cycle
 let cycleDuration = 2000;
 // let whiteDots = [];
+let noiseOffset = 0.0;
+let noiseIncrement = 0.01;
 
 function preload() {
   font1 = loadFont('assets/Balgin Black.ttf');
@@ -32,7 +34,19 @@ function setup() {
 }
 
 function draw() {
+  // 使用柏林噪音来控制绽放速度
+  let noiseFactor = noise(noiseOffset);
+  cycleDuration = map(noiseFactor, 0, 1, 200, 800); // 根据噪音值调整绽放周期
+
   firework1.show();
+  firework1.update();
+
+  // 使用柏林噪音来控制花火的大小
+  let sizeFactor = map(noise(noiseOffset + 1000), 0, 1, 0.5, 2.0);
+  firework1.maxSize = min(width, height) * 0.1 * sizeFactor; // 根据噪音值调整花火的最大大小
+
+  noiseOffset += noiseIncrement;
+
   let bgcol = color("#02496C");
   bgcol.setAlpha(5);
   fill(bgcol);
@@ -113,17 +127,13 @@ function calculateRectSize() {
 }
 
 class Firework {
-  constructor(x, y, expansionSpeed, rotationSpeed) {
+  constructor(x, y) {
     // firework position
     this.x = x;
     this.y = y;
-
+    this.maxSize = min(width, height) * 0.1;
+    this.size = 0;
     this.cycleStartTime = millis();
-    this.rotation = 0;
-    // Set bloom speed
-    this.expansionSpeed = expansionSpeed;
-    // Set rotation speed
-    this.rotationSpeed = rotationSpeed;
 
     let colors1 = "CFDDFB-FCA522-E1FFF6-FBD2D9".split("-").map(a => "#" + a);
     this.FireworkColor = color(random(colors1));
@@ -146,11 +156,7 @@ class Firework {
     let time = millis() - this.cycleStartTime;
     let t = (time % cycleDuration) / cycleDuration;
 
-    let size = map(t, 0, 1, 0, min(windowWidth, windowHeight) / 6);
-
-    // Update rotation speed
-    this.rotation += this.rotationSpeed;
-    rotate(this.rotation);
+    let size = map(t, 0, 1, 0, this.maxSize);
 
     for (let i = 0; i < 360; i += 10) {
       let ex = size * sin(i);

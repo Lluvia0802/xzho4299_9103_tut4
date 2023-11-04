@@ -165,6 +165,8 @@ class Firework {
 
     let size = map(t, 0, 1, 0, this.maxSize);
 
+    let n = random()
+
     for (let i = 0; i < 360; i += 10) {
       let ex = size * sin(i);
       let ey = size * cos(i);
@@ -250,4 +252,9 @@ class Star {
       this.reset()
     }
   }
+}
+
+function mousePressed() {
+  let colors = "6d59ff-95b5f6-4bebf5-8bacfa".split("-").map(a => "#" + a);
+  firework1.FireworkColor = color(random(colors));
 }

@@ -5,6 +5,8 @@ let rectRatio = 210 / 297;
 // Control the number of frames in the bloom cycle
 let noiseOffset = 0.0;
 let noiseIncrement = 0.01;
+// Initial number of ellipses
+let ellipseCount = 36;
 
 const stars = []
 
@@ -165,9 +167,7 @@ class Firework {
 
     let size = map(t, 0, 1, 0, this.maxSize);
 
-    let n = random()
-
-    for (let i = 0; i < 360; i += 10) {
+    for (let i = 0; i < 360; i += 360 / ellipseCount) {
       let ex = size * sin(i);
       let ey = size * cos(i);
       ellipse(ex, ey, 10, 10);
@@ -257,4 +257,7 @@ class Star {
 function mousePressed() {
   let colors = "6d59ff-95b5f6-4bebf5-8bacfa".split("-").map(a => "#" + a);
   firework1.FireworkColor = color(random(colors));
+
+  let possibleEllipseCounts = [5, 10, 12, 15, 18, 20, 24, 36];
+  ellipseCount = random(possibleEllipseCounts);
 }

@@ -1,5 +1,6 @@
 let firework1;
 let rectWidth, rectHeight;
+let rectcol;
 // A4 Size
 let rectRatio = 210 / 297;
 // Control the number of frames in the bloom cycle
@@ -23,6 +24,9 @@ function setup() {
 
   calculateRectSize();
 
+  //Initialize rectangle color
+  rectcol = color("#02496C");
+
   // Create 1 firework
   firework1 = new Firework(0.5 * width, 0.5 * height, 0.5, 1);
 
@@ -44,9 +48,9 @@ function draw() {
     star.display()
   })
 
-  let bgcol = color("#02496C");
-  bgcol.setAlpha(10);
-  fill(bgcol);
+
+  rectcol.setAlpha(10);
+  fill(rectcol);
   noStroke();
   let x = width / 2 - rectWidth / 2;
   let y = height / 2 - rectHeight / 2;
@@ -255,8 +259,12 @@ class Star {
 }
 
 function mousePressed() {
-  let colors = "6d59ff-95b5f6-4bebf5-8bacfa".split("-").map(a => "#" + a);
-  firework1.FireworkColor = color(random(colors));
+  let colors1 = "6d59ff-95b5f6-4bebf5-8bacfa".split("-").map(a => "#" + a);
+  firework1.FireworkColor = color(random(colors1));
+
+  // Update rectangle color
+  let colors = ["#F4C645", "#E98110", "#E84646", "#14603F", "#02496C"];
+  rectcol = color(random(colors));
 
   let possibleEllipseCounts = [5, 10, 12, 15, 18, 20, 24, 36];
   ellipseCount = random(possibleEllipseCounts);

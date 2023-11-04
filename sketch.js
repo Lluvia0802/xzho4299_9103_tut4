@@ -3,10 +3,10 @@ let rectWidth, rectHeight;
 // A4 Size
 let rectRatio = 210 / 297;
 // Control the number of frames in the bloom cycle
-let cycleDuration = 2000;
-// let whiteDots = [];
 let noiseOffset = 0.0;
 let noiseIncrement = 0.01;
+
+const stars = []
 
 function preload() {
   font1 = loadFont('assets/Balgin Black.ttf');
@@ -16,7 +16,7 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  background(255);
+  background(0);
   angleMode(DEGREES);
 
   calculateRectSize();
@@ -24,56 +24,66 @@ function setup() {
   // Create 1 firework
   firework1 = new Firework(0.5 * width, 0.5 * height, 0.5, 1);
 
-  // // Create randomly distributed white dots
-  // for (let i = 0; i < 50; i++) {
-  //   let x = random(width);
-  //   let y = random(height);
-  //   let size = random(5, 15);
-  //   whiteDots.push(new WhiteDot(x, y, size));
-  // }
+  noStroke()
+  const starCount = parseInt(width * height / (width + height)) / 2;
+  for (let i = 0; i < starCount; i++) {
+    const startPos = createVector(random(width), random(height))
+    stars.push(new Star(startPos))
+  }
 }
 
+
 function draw() {
-  // 使用柏林噪音来控制绽放速度
-  let noiseFactor = noise(noiseOffset);
-  cycleDuration = map(noiseFactor, 0, 1, 200, 800); // 根据噪音值调整绽放周期
-
-  firework1.show();
-  firework1.update();
-
-  // 使用柏林噪音来控制花火的大小
-  let sizeFactor = map(noise(noiseOffset + 1000), 0, 1, 0.5, 2.0);
-  firework1.maxSize = min(width, height) * 0.1 * sizeFactor; // 根据噪音值调整花火的最大大小
-
-  noiseOffset += noiseIncrement;
+  if (frameCount % 1000 === 0) { // The interval for refreshing the background
+    background(0);
+  }
+  stars.forEach(star => {
+    star.update()
+    star.display()
+  })
 
   let bgcol = color("#02496C");
-  bgcol.setAlpha(5);
+  bgcol.setAlpha(10);
   fill(bgcol);
   noStroke();
   let x = width / 2 - rectWidth / 2;
   let y = height / 2 - rectHeight / 2;
   rect(x, y, rectWidth, rectHeight);
 
-  // Draw white dots
-  // for (let dot of whiteDots) {
-  //   dot.show();
-  // }
+  // Use perlin noise to control bloom speed
+  let noiseFactor = noise(noiseOffset);
+  // Adjust bloom period based on noise value
+  cycleDuration = map(noiseFactor, 0, 1, 200, 800);
+
+  firework1.show();
+  firework1.update();
+
+  // Use perlin noise to control the size of fireworks
+  let sizeFactor = map(noise(noiseOffset + 1000), 0, 1, 0.5, 2.0);
+  // Adjust the maximum size of fireworks based on noise value
+  firework1.maxSize = min(width, height) * 0.1 * sizeFactor;
+
+  noiseOffset += noiseIncrement;
 
   let textSizeMultiplier1 = 0.1;
   textFont(font2);
   textSize(textSizeMultiplier1 * windowHeight);
   fill('white');
   textLeading(rectHeight * 0.1);
-  let textXOffset1 = (rectWidth * 0.05); // 调整此值来水平垂直偏移
+  // Adjust this value to offset horizontally and vertically
+  let textXOffset1 = (rectWidth * 0.05);
   let textX1 = x + textXOffset1;
-  let textYOffset1 = (rectHeight * 0.1); // 调整此值来控制垂直偏移
+  // Adjust this value to control vertical offset
+  let textYOffset1 = (rectHeight * 0.1);
   let textY1 = y + textYOffset1;
   text('Wheels of Fortune', textX1, textY1, rectWidth - 30, rectHeight - 30);
 
-  let textXOffset2 = (rectWidth * 0.05); // 调整此值来水平垂直偏移
+  // Adjust this value to offset horizontally and vertically
+  let textXOffset2 = (rectWidth * 0.05);
   let textX2 = x + textXOffset2;
-  let textYOffset2 = (rectHeight * 0.95); // 调整此值来控制垂直偏移
+
+  // Adjust this value to control vertical offset
+  let textYOffset2 = (rectHeight * 0.95);
   let textY2 = y + textYOffset2;
   text('Exhibition', textX2, textY2);
 
@@ -81,9 +91,9 @@ function draw() {
   textFont(font1);
   textSize(textSizeMultiplier2 * windowHeight);
   fill('white');
-  let textXOffset3 = (rectWidth * 0.05); // 调整此值来水平垂直偏移
+  let textXOffset3 = (rectWidth * 0.05);
   let textX3 = x + textXOffset3;
-  let textYOffset3 = (rectHeight * 0.83); // 调整此值来控制垂直偏移
+  let textYOffset3 = (rectHeight * 0.83);
   let textY3 = y + textYOffset3;
   text('Pacita Abad', textX3, textY3);
 
@@ -91,9 +101,9 @@ function draw() {
   textFont(font1);
   textSize(textSizeMultiplier3 * windowHeight);
   fill('white');
-  let textXOffset4 = (rectWidth * 0.1); // 调整此值来水平垂直偏移
+  let textXOffset4 = (rectWidth * 0.1);
   let textX4 = x + textXOffset4;
-  let textYOffset4 = (rectHeight * 0.5); // 调整此值来控制垂直偏移
+  let textYOffset4 = (rectHeight * 0.5);
   let textY4 = y + textYOffset4;
   push();
   translate(textX4, textY4);
@@ -104,14 +114,13 @@ function draw() {
 
 }
 
+
+
+
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
   firework1.updatePosition(0.5 * width, 0.5 * height);
   calculateRectSize();
-  // Update the position of the white dot
-  // for (let dot of whiteDots) {
-  //   dot.updatePosition(random(width), random(height));
-  // }
 }
 
 function calculateRectSize() {
@@ -192,24 +201,51 @@ class Firework {
     this.x = newX;
     this.y = newY;
   }
-
 }
 
-// class WhiteDot {
-//   constructor(x, y, size) {
-//     this.x = x;
-//     this.y = y;
-//     this.size = size;
-//   }
+class Star {
+  constructor(vLocation) {
+    this.position = vLocation
+    this.velocity = createVector()
+    this.accelration = createVector()
+    this.color = random(255)
+    this.size = random(1, 3)
+    this.initDirection()
 
-//   show() {
-//     fill(255);
-//     noStroke();
-//     ellipse(this.x, this.y, this.size, this.size);
-//   }
+  }
+  initDirection() {
+    const centerPos = createVector(width / 2, height / 2)
+    const movingDirection = p5.Vector.sub(this.position, centerPos).normalize()
+    this.accelration = movingDirection.mult(random(0.1, 0.2))
+  }
 
-//   updatePosition(newX, newY) {
-//     this.x = newX;
-//     this.y = newY;
-//   }
-// }
+  update() {
+    this.velocity.add(this.accelration)
+    this.position.add(this.velocity)
+    this.checkEdge()
+  }
+
+  display() {
+    fill(this.color)
+    const distance = p5.Vector.sub(this.position, createVector(width / 2, height / 2)).mag()
+    const size = map(distance, 0, width / 2, 0, this.size)
+    circle(this.position.x, this.position.y, size)
+  }
+
+  reset() {
+    this.position = createVector(
+      random(width),
+      random(height)
+    )
+    this.velocity = createVector()
+    this.initDirection()
+  }
+
+  checkEdge() {
+    if (this.position.x > width || this.position.x < 0
+      || this.position.y > height || this.position.y < 0
+    ) {
+      this.reset()
+    }
+  }
+}

@@ -114,13 +114,11 @@ function draw() {
 
 }
 
-
-
-
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
   firework1.updatePosition(0.5 * width, 0.5 * height);
   calculateRectSize();
+  background(0);
 }
 
 function calculateRectSize() {
@@ -205,24 +203,28 @@ class Firework {
 
 class Star {
   constructor(vLocation) {
-    this.position = vLocation
-    this.velocity = createVector()
-    this.accelration = createVector()
-    this.color = random(255)
-    this.size = random(1, 3)
-    this.initDirection()
+    this.position = vLocation;
+    this.velocity = createVector();
+    this.accelration = createVector();
+    this.color = random(255);
+    this.size = random(1, 3);
+    this.initDirection();
 
   }
+
   initDirection() {
-    const centerPos = createVector(width / 2, height / 2)
-    const movingDirection = p5.Vector.sub(this.position, centerPos).normalize()
-    this.accelration = movingDirection.mult(random(0.1, 0.2))
+    const centerPos = createVector(width / 2, height / 2);
+    const t = millis() * 0.001; // Using time as noise input
+    const noiseValue = noise(t) * 2 - 1; // Generates noise values in the range -1 to 1
+    const speed = map(noiseValue, -1, 1, 0.1, 0.2); // Adjust speed range
+    const movingDirection = p5.Vector.sub(this.position, centerPos).normalize();
+    this.accelration = movingDirection.mult(speed);
   }
 
   update() {
-    this.velocity.add(this.accelration)
-    this.position.add(this.velocity)
-    this.checkEdge()
+    this.velocity.add(this.accelration);
+    this.position.add(this.velocity);
+    this.checkEdge();
   }
 
   display() {

@@ -175,6 +175,19 @@ function keyPressed() {
     // If the delete key is pressed, remove the last character
     userInput = userInput.slice(0, -1);
   }
+  if (key === ' ') {
+    let colors1 = "6d59ff-95b5f6-4bebf5-8bacfa".split("-").map(a => "#" + a);
+    firework1.FireworkColor = color(random(colors1));
+
+    // Update rectangle color
+    let colors = ["#F4C645", "#E98110", "#E84646", "#14603F", "#02496C"];
+    let chooseColors = random(colors);
+    rectcol = color(chooseColors);
+    circlecol = color(chooseColors);
+
+    let possibleEllipseCounts = [5, 10, 12, 15, 18, 20, 24, 36];
+    ellipseCount = random(possibleEllipseCounts);
+  }
 }
 
 class Firework {
@@ -293,15 +306,5 @@ class Star {
 }
 
 function mousePressed() {
-  let colors1 = "6d59ff-95b5f6-4bebf5-8bacfa".split("-").map(a => "#" + a);
-  firework1.FireworkColor = color(random(colors1));
 
-  // Update rectangle color
-  let colors = ["#F4C645", "#E98110", "#E84646", "#14603F", "#02496C"];
-  let chooseColors = random(colors);
-  rectcol = color(chooseColors);
-  circlecol = color(chooseColors);
-
-  let possibleEllipseCounts = [5, 10, 12, 15, 18, 20, 24, 36];
-  ellipseCount = random(possibleEllipseCounts);
 }

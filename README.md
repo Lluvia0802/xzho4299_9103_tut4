@@ -1,30 +1,21 @@
 ###
 *xzho4299_9103_tut4*
-## Quiz 8
-### Part 1: Imaging Technique Inspiration
-My inspiration comes from the animated movie ***Spider-Man: Across the Spider-Verse***. The movie uses a large number of hand-drawn lines to express a sense of flow, which brings strong visual impact and artistic beauty. The work I want to choose is ***Georges Majeur au Crépuscule*** by Monet. The picture looks like it is made up of many lines, which has a very similar feeling to ***Spider-Man***. I hope to give this painting the sense of flow in the movie and make the artwork full of vitality.
-###
+## Individual Task
+### Random Seed (perlin noise): Utilise random numbers or perlin noise for animation.
+### Description
+I designed an interactive digital poster for an exhibition of Pacita Abad's artwork. I mainly used the circle element extracted from his work ***Wheels of Fortune*** as the main element of the poster (the fireworks in the Group Task). I used Berlin noise to modify the speed and size of the fireworks and added the animation of meteors streaking in the background to give the poster a visual impact. Users can randomly obtain electronic posters of different styles, enter their names, and save them as their unique exhibition posters as souvenirs.
 
-![An image of inspiration](assets/Spiderman-1.JPG)
-![An image of inspiration](assets/Spiderman-2.JPG)
-![An image of inspiration](assets/Spiderman-3.JPG)
+### Instructions
+1. Press the space bar to change the firework style, firework color, and poster color.
+2. Click on the upper left corner of the window to enter your name (when the mouse changes to input mode), the name will be displayed on the poster.
+3. If the delete key is pressed, you can remove the last character to modify your name.
+4. When the mouse position is within the poster range, click the mouse to save the poster as image file
 
-### Part 2: Coding Technique Exploration
-The coding technique I found that can express the flow of lines is Particle System. 
-
-![An image of Particle Systems](assets/Particle_Systems.JPG)
-[Particle Systems-example-1](https://openprocessing.org/sketch/2006924)
-
-
-I need to redraw the image using the particle system. The basic method is to convert the image into particles: mainly to obtain the color of the image, then draw particles of different colors, and finally let the particles move to draw flowing graphics. 
-
-![An image of Particle Systems](assets/trying_painting_circle_noise.JPG)
-[Particle Systems-example-2](https://openprocessing.org/sketch/2013546)
-
- In addition to showing the fluidity of the lines, I also want to add interactive effects with the mouse and keyboard, so that the particles can follow the movement of the mouse, increase or decrease the number of particles, change the particle type, and even achieve a three-dimensional effect with shadows.
-
-![An image of Particle Systems](assets/Interactive_Particle.JPG)
-[Particle Systems-example-3](https://openprocessing.org/sketch/1984312)
-
-![An image of Particle Systems](assets/GravParticleRandom.JPG)
-[Particle Systems-example-4](https://openprocessing.org/sketch/1960926)
+### References
+1. Class fireworks and screenshot
+https://openprocessing.org/sketch/929936
+2. Class Star 
+https://beauty-of-pixel.tech/tutorials/starfield/
+3. Others: text input
+https://p5js.org/reference/  
+Based on the effect I want to present, the reference codes have been modified.

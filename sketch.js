@@ -190,6 +190,8 @@ function keyPressed() {
   }
 }
 
+// New code:fireworks
+// https://openprocessing.org/sketch/929936
 class Firework {
   constructor(x, y) {
     // firework position
@@ -254,6 +256,8 @@ class Firework {
   }
 }
 
+// new code: starfield
+// https://beauty-of-pixel.tech/tutorials/starfield/
 class Star {
   constructor(vLocation) {
     this.position = vLocation;

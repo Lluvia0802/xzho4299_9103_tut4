@@ -12,6 +12,8 @@ let ellipseCount = 36;
 
 const stars = []
 
+let userInput = '';
+
 function preload() {
   font1 = loadFont('assets/Balgin Black.ttf');
   font2 = loadFont('assets/Gliker Black.ttf');
@@ -38,6 +40,18 @@ function setup() {
     const startPos = createVector(random(width), random(height))
     stars.push(new Star(startPos))
   }
+
+  // Create a text input box
+  let input = createInput();
+  input.position(20, 20);
+  // Attach an event listener
+  input.input(inputEvent);
+  // initialization
+  let inputElement = input.elt;
+  inputElement.style.border = 'none';
+  inputElement.style.outline = 'none';
+  inputElement.style.backgroundColor = 'transparent';
+  inputElement.style.font = '16px sans-serif';
 }
 
 
@@ -120,6 +134,16 @@ function draw() {
   text('City of Sydney', 0, 0);
   pop();
 
+  let textSizeMultiplier4 = 0.02;
+  textFont('sans-serif');
+  fill('white');
+  textSize(textSizeMultiplier4 * windowHeight);
+  let textXOffset5 = (rectWidth * 0.05);
+  let textX5 = x + textXOffset5;
+  let textYOffset5 = (rectHeight * 0.75);
+  let textY5 = y + textYOffset5;
+  // Display user input
+  text("Ticket for : " + userInput, textX5, textY5);
 }
 
 function windowResized() {
@@ -141,6 +165,18 @@ function calculateRectSize() {
   }
 }
 
+function inputEvent() {
+  // Get input text
+  userInput = this.value();
+}
+
+function keyPressed() {
+  if (key === 'Backspace') {
+    // If the delete key is pressed, remove the last character
+    userInput = userInput.slice(0, -1);
+  }
+}
+
 class Firework {
   constructor(x, y) {
     // firework position
@@ -154,10 +190,6 @@ class Firework {
     this.FireworkColor = color(random(colors1));
     let colors2 = "110671-239940-D9354B-CE57B1-E7853C-089494".split("-").map(a => "#" + a);
     this.circleColor1 = color(random(colors2));
-    // let colors3 = "2F3333-DF4558-58A06B-75B5E0-BA5BD8".split("-").map(a => "#" + a);
-    // this.circleColor2 = color(random(colors3));
-    // this.circleColor3 = color(random(colors3));
-    // this.circleColor4 = color(random(colors3));
   }
 
   // draw fireworks

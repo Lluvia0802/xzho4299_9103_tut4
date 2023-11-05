@@ -1,6 +1,7 @@
 let firework1;
 let rectWidth, rectHeight;
 let rectcol;
+let circlecol;
 // A4 Size
 let rectRatio = 210 / 297;
 // Control the number of frames in the bloom cycle
@@ -26,6 +27,7 @@ function setup() {
 
   //Initialize rectangle color
   rectcol = color("#02496C");
+  circlecol = color("#02496C");
 
   // Create 1 firework
   firework1 = new Firework(0.5 * width, 0.5 * height, 0.5, 1);
@@ -152,10 +154,10 @@ class Firework {
     this.FireworkColor = color(random(colors1));
     let colors2 = "110671-239940-D9354B-CE57B1-E7853C-089494".split("-").map(a => "#" + a);
     this.circleColor1 = color(random(colors2));
-    let colors3 = "2F3333-DF4558-58A06B-75B5E0-BA5BD8".split("-").map(a => "#" + a);
-    this.circleColor2 = color(random(colors3));
-    this.circleColor3 = color(random(colors3));
-    this.circleColor4 = color(random(colors3));
+    // let colors3 = "2F3333-DF4558-58A06B-75B5E0-BA5BD8".split("-").map(a => "#" + a);
+    // this.circleColor2 = color(random(colors3));
+    // this.circleColor3 = color(random(colors3));
+    // this.circleColor4 = color(random(colors3));
   }
 
   // draw fireworks
@@ -178,18 +180,18 @@ class Firework {
       circle(ex, ey, 10);
 
       push();
-      fill(this.circleColor1);
+      fill(circlecol);
       circle(ex, ey, 5)
       pop();
     }
-    fill(this.circleColor2)
-    circle(0, 0, 50)
+    fill(circlecol);
+    circle(0, 0, 50);
 
-    fill(this.circleColor3)
-    circle(0, 0, 40)
+    fill("white");
+    circle(0, 0, 35);
 
-    fill(this.circleColor4)
-    circle(0, 0, 20)
+    fill(circlecol);
+    circle(0, 0, 20);
 
     pop();
   }
@@ -264,7 +266,9 @@ function mousePressed() {
 
   // Update rectangle color
   let colors = ["#F4C645", "#E98110", "#E84646", "#14603F", "#02496C"];
-  rectcol = color(random(colors));
+  let chooseColors = random(colors);
+  rectcol = color(chooseColors);
+  circlecol = color(chooseColors);
 
   let possibleEllipseCounts = [5, 10, 12, 15, 18, 20, 24, 36];
   ellipseCount = random(possibleEllipseCounts);

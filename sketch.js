@@ -306,5 +306,10 @@ class Star {
 }
 
 function mousePressed() {
-
+  // Check whether the mouse click position is within poster
+  if (mouseX > width / 2 - rectWidth / 2 && mouseX < width / 2 - rectWidth / 2 + rectWidth) {
+    let screenshot = get(width / 2 - rectWidth / 2, height / 2 - rectHeight / 2, rectWidth, rectHeight);
+    // Save poster as image file
+    screenshot.save('screenshot.jpg');
+  }
 }

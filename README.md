@@ -7,7 +7,7 @@ I designed an interactive digital poster for an exhibition of Pacita Abad's artw
 
 ### Instructions
 1. Press the space bar to change the firework style, firework color, and poster color.
-2. Click on the upper left corner of the window to enter your name (when the mouse changes to input mode), the name will be displayed on the poster.
+2. Click on the upper left corner of the window to enter your name, the name will be displayed on the poster.
 3. If the delete key is pressed, you can remove the last character to modify your name.
 4. When the mouse position is within the poster range, click the mouse to save the poster as image file
 

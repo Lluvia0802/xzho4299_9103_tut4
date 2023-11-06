@@ -10,7 +10,7 @@ let noiseIncrement = 0.01;
 // Initial number of ellipses
 let ellipseCount = 36;
 
-const stars = []
+const stars = [];
 
 let userInput = '';
 
@@ -35,11 +35,11 @@ function setup() {
   // Create 1 firework
   firework1 = new Firework(0.5 * width, 0.5 * height, 0.5, 1);
 
-  noStroke()
+  noStroke();
   const starCount = parseInt(width * height / (width + height)) / 2;
   for (let i = 0; i < starCount; i++) {
-    const startPos = createVector(random(width), random(height))
-    stars.push(new Star(startPos))
+    const startPos = createVector(random(width), random(height));
+    stars.push(new Star(startPos));
   }
 
   // Create a text input box
@@ -62,8 +62,8 @@ function draw() {
     background(0);
   }
   stars.forEach(star => {
-    star.update()
-    star.display()
+    star.update();
+    star.display();
   })
 
   rectcol.setAlpha(10);
@@ -177,6 +177,7 @@ function keyPressed() {
     userInput = userInput.slice(0, -1);
   }
   if (key === ' ') {
+    // If the space is pressed, change fireworks's color,shape, and poster's color
     let colors1 = "6d59ff-95b5f6-4bebf5-8bacfa".split("-").map(a => "#" + a);
     firework1.FireworkColor = color(random(colors1));
 

@@ -17,6 +17,7 @@ let userInput = '';
 function preload() {
   font1 = loadFont('assets/Balgin Black.ttf');
   font2 = loadFont('assets/Gliker Black.ttf');
+  font3 = loadFont('assets/Microsoft Sans Serif.ttf');
 }
 
 
@@ -43,14 +44,15 @@ function setup() {
 
   // Create a text input box
   let input = createInput();
-  input.position(20, 20);
+  input.position(windowWidth * 0.05, windowHeight * 0.05);
+  input.size(100);
   // Attach an event listener
   input.input(inputEvent);
   // initialization
   let inputElement = input.elt;
   inputElement.style.border = 'none';
   inputElement.style.outline = 'none';
-  inputElement.style.backgroundColor = 'transparent';
+  inputElement.style.backgroundColor = 'white';
   inputElement.style.font = '16px sans-serif';
 }
 
@@ -63,7 +65,6 @@ function draw() {
     star.update()
     star.display()
   })
-
 
   rectcol.setAlpha(10);
   fill(rectcol);
@@ -135,7 +136,7 @@ function draw() {
   pop();
 
   let textSizeMultiplier4 = 0.02;
-  textFont('sans-serif');
+  textFont(font3);
   fill('white');
   textSize(textSizeMultiplier4 * windowHeight);
   let textXOffset5 = (rectWidth * 0.05);
@@ -187,6 +188,15 @@ function keyPressed() {
 
     let possibleEllipseCounts = [5, 10, 12, 15, 18, 20, 24, 36];
     ellipseCount = random(possibleEllipseCounts);
+  }
+}
+
+function mousePressed() {
+  // Check whether the mouse click position is within poster
+  if (mouseX > width / 2 - rectWidth / 2 && mouseX < width / 2 - rectWidth / 2 + rectWidth) {
+    let screenshot = get(width / 2 - rectWidth / 2, height / 2 - rectHeight / 2, rectWidth, rectHeight);
+    // Save poster as image file
+    screenshot.save('screenshot.jpg');
   }
 }
 
@@ -309,11 +319,4 @@ class Star {
   }
 }
 
-function mousePressed() {
-  // Check whether the mouse click position is within poster
-  if (mouseX > width / 2 - rectWidth / 2 && mouseX < width / 2 - rectWidth / 2 + rectWidth) {
-    let screenshot = get(width / 2 - rectWidth / 2, height / 2 - rectHeight / 2, rectWidth, rectHeight);
-    // Save poster as image file
-    screenshot.save('screenshot.jpg');
-  }
-}
+

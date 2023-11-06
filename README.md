@@ -19,3 +19,6 @@ https://beauty-of-pixel.tech/tutorials/starfield/
 3. Others: text input
 https://p5js.org/reference/  
 Based on the effect I want to present, the reference codes have been modified.
+
+### Poster Sample
+![Poster Sample](/assets/Poster%20Sample.jpg)
